@@ -4,22 +4,20 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="App-header mt-4">
+        <div className="header-title">
+          <img src={logo} className="App-logo" alt="logo" />
+          <div className="title">JEU DU PENDU</div>
+        </div>
       </header>
     </div>
   );
+}
+
+function computeDisplay(phrase, usedLetters) {
+  return phrase.replace(/\w/g, (letter) => (
+    usedLetters.includes(letter) ? letter : '_'
+  ))
 }
 
 export default App;
