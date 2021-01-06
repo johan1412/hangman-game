@@ -1,25 +1,57 @@
 
+.App {
+  color: white;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
 .App-logo {
   height: 15vmin;
   pointer-events: none;
 }
 
 .App-header {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .header-title {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  font-size: 170%;
+  justify-content: flex-start;
+  font-size: 140%;
   font-weight: bold;
 }
+
+.attempts {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 170%;
+  height: 100%;
+  width: 100%;
+}
+
+.main {
+  height: 100%;
+}
+
+.masque, .buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.masque {
+  font-size: 350%;
+  letter-spacing: 0.5em;
+}
+
 
