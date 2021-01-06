@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { Component } from 'react';
+import { Component, createRef, useRef } from 'react';
 
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 const phrases = ['test', 'phrase', 'pendu', 'developement', 'reussite', 'escalier', 'balancoire', 'aleatoire', 'eau', 'honteux', 'condamne', 'invitation', 'constante', 'signal', 'équivalent', 'autonomisation', 'mousse', 'commercial', 'conversion', 'elargir', 'banque', 'bijou']
@@ -12,12 +12,38 @@ class App extends Component {
     const phrase = phrases[Math.floor(Math.random() * phrases.length)]
     this.handleLetterClick = this.handleLetterClick.bind(this)
     this.handleClickRestart = this.handleClickRestart.bind(this)
+    this.handlerKeyDown = this.handlerKeyDown.bind(this)
     this.state = {
         usedLetters: [],
         phrase: phrase,
         attempts: 0
     }
   }
+
+  handlerKeyDown (e) {
+    e.preventDefault()
+    if(e.keyCode > 64 && e.keyCode < 91) {
+      const letter = String.fromCharCode(e.keyCode)
+      this.setState({
+        usedLetters: [...this.state.usedLetters, letter],
+        phrase: this.state.phrase,
+        attempts: this.state.attempts + 1
+      })
+      let button = createRef()
+      button.className = "btn btn-secondary btn-lg disabled m-1"
+    }
+  }
+
+  componentDidMount() {
+    document.addEventListener("keydown", this.handlerKeyDown)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", function() {
+
+    })
+  }
+
 
   handleLetterClick (letter) {
     this.setState({
@@ -86,7 +112,7 @@ class Buttons extends Component {
   render () {
     return <div>
       {alphabet.map((letter) => {
-        return <button className="btn btn-info btn-lg m-1" value={letter} key={letter} onClick={this.handleLetterClick}>{letter}</button>
+        return <button id={letter} className="btn btn-info btn-lg m-1" value={letter} key={letter} onClick={this.handleLetterClick}>{letter}</button>
       })}
     </div>
   }
