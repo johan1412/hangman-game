@@ -29,7 +29,7 @@ class App extends Component {
         phrase: this.state.phrase,
         attempts: this.state.attempts + 1
       })
-      let button = createRef()
+      const button = createRef()
       button.className = "btn btn-secondary btn-lg disabled m-1"
     }
   }
@@ -79,7 +79,7 @@ class App extends Component {
             <div className="masque p-5">{text}</div>
             <div className="buttons p-5">
               {endGame
-              ? <button className="btn btn-info btn-lg" value="restart" onClick={this.handleClickRestart}>Recommencer une partie</button>
+              ? <div><h1>GAGNÉ</h1><button className="btn btn-info btn-lg" value="restart" onClick={this.handleClickRestart}>Rejouer</button></div>
               : <Buttons onClickButton={this.handleLetterClick}/>
               }
             </div>
